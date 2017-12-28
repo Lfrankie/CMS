@@ -47,34 +47,16 @@
                         </form><!-- Add categories Ends-->
                         
                         
-                        
-                        <form action="categories.php" method="post">
-                           <div class="form-group">
-                              <label for="catName">Update Category</label>
-                              
-                              <?php // delete category query
-                            if(isset($_GET['edit'])) {
-                                $edit_cat_id = $_GET['edit'];
-                                $query = "SELECT * FROM categories WHERE cat_id = $edit_cat_id";
-                                $select_edit_id_query = mysqli_query($connection, $query);
-                                
-                                while($row = mysqli_fetch_assoc($select_edit_id_query)) {
-                                $cat_id = $row['cat_id'];
-                                $cat_title = $row['cat_title'];
-                            ?>
-                        <input value="<?php if(isset($cat_title)) {echo $cat_title;} ?>" class="form-control" type="text" name="catName" id="catName">
+                        <?php 
+                               if(isset($_GET['edit'])) {
+                                   $cat_id = $_GET['edit'];
+                                   
+                                   include "includes/update_categories.php";
+                               }
+                               
+                               
+                               ?>
 
-                        <?php    
-                            }
-                            }
-                            ?>
-                            
-                           </div>
-                            <div class="form-group">
-                                <input class="btn btn-primary" type="submit" name="submit" value="Update Category">
-                            </div>
-                            
-                        </form>
                     </div> 
                     <div class="col-xs-6">
                         <table class="table table-bordered table-hover">
@@ -110,7 +92,7 @@
                             }
                             ?>
                             
-                        </table>
+                        </table> 
                     </div>
                     </div>
                 </div>
